@@ -40,22 +40,22 @@ public class SortMethod {
 
     }
     public int findAndPut(int[] array,int iStart,int iEnd){
-
-        int holdNum=array[iEnd];
+//更好理解的版本
+        int holdNum=array[iEnd];//选择右边的，则左边的指针先走；
         int left=iStart;
-        int right=iEnd-1;
-        while(true){
-            while (left<=right&array[left]<=holdNum){
+        int right=iEnd;
+        while(left<right){
+            while(array[left]<=holdNum&&(left<right)){
                 left++;
             }
-            while((right>=left) && (array[right]>holdNum)){
+            while(array[right]>=holdNum&&(left<right)){
                 right--;
             }
-            if(left>right) break;
-            change(array,left,right);
-
-
+            if(left<right){
+                change(array,left,right);
+            }
         }
+        //跳出的结果是left==right；
         change(array,left,iEnd);
         return left;
 
